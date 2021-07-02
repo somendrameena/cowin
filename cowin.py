@@ -35,7 +35,7 @@ if response.status_code == 200:
 
         for session in sessions:
 
-            if session.get("min_age_limit") == age_limit and session.get("available_capacity") > 0:
+            if session.get("min_age_limit") == age_limit and session.get("available_capacity_dose1") > 0:
                 center_name = center.get("name")
                 available_centers.append(center_name)
                 print(center_name)

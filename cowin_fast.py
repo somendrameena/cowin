@@ -6,6 +6,7 @@ import requests
 
 age_limit = 45
 district_id = 506
+dose_no = 1
 
 today = date.today()
 date_string = today.strftime("%d-%m-%Y")
@@ -37,7 +38,7 @@ while True:
 
             for session in sessions:
 
-                if session.get("min_age_limit") == age_limit and session.get("available_capacity") > 0:
+                if session.get("min_age_limit") == age_limit and session.get("available_capacity_dose" + str(dose_no)) > 0:
                     center_name = center.get("name")
                     available_centers.append(center_name)
                     print(center_name)
@@ -45,3 +46,8 @@ while True:
         if len(available_centers) > 0:
             print("{} centers are available. Book your appointment now".format(len(available_centers)))
             playsound.playsound(sos_sound_path, block=True)
+    else:
+        print("Got {} response from server".format(response.status_code))
+        break
+
+print("Program terminated due to some errors.")
